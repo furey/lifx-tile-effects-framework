@@ -265,11 +265,19 @@ See the following repositories for usage examples:
 
 #### ⚠️ "No tile found."
 
-No Tile devices were found on your LAN (check Tiles are plugged in and turned on).
+No Tile devices were found on your LAN (check your device is plugged in and powered on).
+
+If a new device is added to your network, pass `--clear` when running your script again to clear your LIFX device cache (ensuring your new device is discovered):
+
+```console
+$ node example.js --clear
+
+Clearing device cache…
+```
 
 #### ⚠️ "Tile not responding."
 
-For unknown reasons your Tile is not responding (quit script and try again).
+For unknown reasons your Tile is not responding (quit your script and try again).
 
 #### ⚠️ "Error: Timeout."
 
