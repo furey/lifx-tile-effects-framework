@@ -22,7 +22,7 @@ A framework for creating [LIFX Tile](https://www.lifx.com/collections/creative-t
 ## Installation
 
 ```console
-$ npm install furey/lifx-tile-effects-framework#semver:^v1.0.0
+$ npm install furey/lifx-tile-effects-framework#semver:^v1
 ```
 
 ## Usage
@@ -57,11 +57,11 @@ Add the following `.env` file to your repository root:
 EFFECTS_PATH=path/to/my/effects/directory
 ```
 
-Set `EFFECTS_PATH` to the directory containing your effect classes.
+Set `EFFECTS_PATH` to the directory containing your effect files.
 
-### Effect Classes
+### Effect Files
 
-Add one or more effect classes into your `EFFECTS_PATH` directory:
+Add one or more effect files into your `EFFECTS_PATH` directory:
 
 ```
 path/to/my/effects/directory
@@ -70,7 +70,7 @@ path/to/my/effects/directory
 └── etc.js
 ```
 
-Effect classes must conform to the following interface:
+Effect files must conform to the following interface:
 
 ```JavaScript
 module.exports = class {
@@ -78,13 +78,19 @@ module.exports = class {
   // Color to flush tiles with before effect runs…
   static getFlushColor()
 
-  // Class instantiation method…
+  // Effect instantiation method…
   static async create({ device, tiles, bounds })
 
 }
 ```
 
 For example implementations, see the [Example Effects](#example-effects) section below.
+
+### Effect Interface
+
+#### `getFlushColor()`
+
+The `getFlushColor` method must return a [`LifxLanColor`](https://github.com/furey/node-lifx-lan/tree/feature/tile-support#lifxlancolor-object) object to flush your tiles with before your effect is instantiated.
 
 #### `create()`
 
@@ -96,17 +102,17 @@ The `create` method receives the following deconstructable parameters to instant
 |`tiles`|An array of tile objects|[`tileGetTiles()`](https://github.com/furey/node-lifx-lan/tree/feature/tile-support#tilegettiles-method)|
 |`bounds`|A spacial bounds object|[`tileGetTilesAndBounds()`](https://github.com/furey/node-lifx-lan/tree/feature/tile-support#tilegettilesandbounds-method)|
 
-#### `getFlushColor()`
+## Example Effects
 
-The `getFlushColor` method must return a [`LifxLanColor`](https://github.com/furey/node-lifx-lan/tree/feature/tile-support#lifxlancolor-object) object to flush your tiles with before your effect is instantiated.
+The following example effect files are outlined below:
 
-## Examples
+- [Random Color Effect](#random-color-effect)
+- [Random Colors Effect](#random-colors-effect)
+- [Random Pixels Effect](#random-pixels-effect)
 
-### Example Effects
+### Random Color Effect
 
-#### Random Color
-
-Set all tiles to the same random color every second:
+Sets all tiles to the same random color every second:
 
 ```JavaScript
 module.exports = class {
@@ -143,9 +149,9 @@ module.exports = class {
 }
 ```
 
-#### Random Colors
+### Random Colors Effect
 
-Set each tile to a different random color every second:
+Sets each tile to a different random color every second:
 
 ```JavaScript
 module.exports = class {
@@ -184,9 +190,9 @@ module.exports = class {
 }
 ```
 
-#### Random Pixels
+### Random Pixels Effect
 
-Fade each tile's pixels to different random colors every second:
+Fades each tile's 64 pixels to different random colors every second:
 
 ```JavaScript
 module.exports = class {
@@ -226,9 +232,9 @@ module.exports = class {
 }
 ```
 
-### Example Repositories
+## Example Repositories
 
-See the following repositories for usage examples:
+See the following repositories for advanced usage examples:
 
 - [lifx-tile-example-effects](https://github.com/furey/lifx-tile-example-effects)
 - [lifx-tile-halloween-effects](https://github.com/furey/lifx-tile-halloween-effects)
@@ -273,7 +279,7 @@ You're attempting to update your Tiles too quickly (increase the time between up
 
 ## Credits
 
-This repo builds upon the brilliant [node-lifx-lan](https://github.com/furey/node-lifx-lan/tree/feature/tile-support) library by [@futomi](https://github.com/futomi).
+This repo builds upon the excellent [node-lifx-lan](https://github.com/furey/node-lifx-lan/tree/feature/tile-support) library by [@futomi](https://github.com/futomi).
 
 ## License
 
