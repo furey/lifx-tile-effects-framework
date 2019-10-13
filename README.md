@@ -22,7 +22,7 @@ A framework for creating [LIFX Tile](https://www.lifx.com/collections/creative-t
 ## Installation
 
 ```console
-$ npm install furey/lifx-tile-effects-framework
+$ npm install furey/lifx-tile-effects-framework#semver:^v1.0.0
 ```
 
 ## Usage
