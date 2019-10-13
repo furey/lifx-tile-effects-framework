@@ -1,0 +1,32 @@
+{
+  "name": "lifx-tile-effects-framework",
+  "version": "0.1.0",
+  "description": "A framework for creating LIFX Tile effects.",
+  "main": "lifx-tile-effects-framework.js",
+  "files": [
+    "cache",
+    "src"
+  ],
+  "keywords": [
+    "lifx",
+    "tile",
+    "effects",
+    "framework",
+    "lights",
+    "node",
+    "javascript",
+    "lan",
+    "api"
+  ],
+  "author": "James Furey (https://github.com/furey)",
+  "url": "https://github.com/furey",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^2.4.2",
+    "dotenv": "^8.1.0",
+    "enquirer": "^2.3.2",
+    "fs-extra": "^8.1.0",
+    "node-lifx-lan": "github:furey/node-lifx-lan#feature/tile-support",
+    "yargs": "^14.2.0"
+  }
+}
