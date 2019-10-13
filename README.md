@@ -130,10 +130,6 @@ module.exports = class {
   }
 
   async step() {
-    await this.updateTiles()
-  }
-
-  async updateTiles() {
     await this.device.tileSetTileState64({
       tile_index: this.tiles[0].tile_index,
       length: this.tiles.length,
@@ -173,17 +169,13 @@ module.exports = class {
   }
 
   async step() {
-    await this.updateTiles()
-  }
-
-  async updateTiles() {
     for (let i = 0; i < this.tiles.length; i++) {
       const tile = this.tiles[i]
       await this.device.tileSetTileState64({
         tile_index: tile.tile_index,
         colors: [...Array(64)].fill({
           hue: Math.floor(Math.random() * 360)/360,
-          brightness: 1,
+          brightness: 1
         })
       }).catch(console.error)  
     }
@@ -200,7 +192,7 @@ Fade each tile's pixels to different random colors every second:
 module.exports = class {
 
   static getFlushColor() {
-    return { saturation: 1, brightness: 0, kelvin: 9000 }
+    return { hue: 0, saturation: 1, brightness: 0, kelvin: 9000 }
   }
 
   static async create({ device, tiles }) {
@@ -218,10 +210,6 @@ module.exports = class {
   }
 
   async step() {
-    await this.updateTiles()
-  }
-
-  async updateTiles() {
     for (let i = 0; i < this.tiles.length; i++) {
       const tile = this.tiles[i]
       await this.device.tileSetTileState64({
