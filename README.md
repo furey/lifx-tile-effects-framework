@@ -16,8 +16,8 @@ A framework for creating [LIFX Tile](https://www.lifx.com/collections/creative-t
 
 ## Requirements
 
-- `node -v` >= v12.10.0
-- `npm -v` >= 6.10.3
+- [`node -v`](https://nodejs.org/en/download/current/) >= `v12.10.*`
+- [`npm -v`](https://www.npmjs.com/get-npm) >= `6.10.*`
 - One or more [LIFX Tiles](https://www.lifx.com/collections/creative-tiles) accessible via LAN
 
 ## Installation
@@ -28,6 +28,8 @@ $ npm install furey/lifx-tile-effects-framework#semver:^v1
 
 ## Usage
 
+Add the following code block to your script:
+
 ```JavaScript
 // example.js
 
@@ -36,7 +38,13 @@ require('lifx-tile-effects-framework')
   .catch(console.error)
 ```
 
-Assuming your configured [`EFFECTS_PATH`](#effects-path) contains the [effect files](#effect-files) `effect-1.js`, `effect-2.js` and `etc.js`, running the `example.js` script above would log the following output:
+Assuming your configured [`EFFECTS_PATH`](#effects-path) contained the [effect files](#effect-files)…
+
+- `effect-1.js`
+- `effect-2.js`
+- `etc.js`
+
+…running the `example.js` script above would log the following output:
 
 ```console
 $ node example.js
