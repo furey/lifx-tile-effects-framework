@@ -97,13 +97,13 @@ The `getFlushColor` method must return a [`LifxLanColor`](https://github.com/fur
 
 #### `create()`
 
-The `create` method receives the following deconstructable parameters to instantiate your effect with:
+The `create` method receives an object containing the following properties to instantiate your effect with:
 
-|Param|Description|Docs|
+|Property|Description|Documentation|
 |---|---|---|
-|`device`|A device object|[`LifxLanDevice`](https://github.com/furey/node-lifx-lan/tree/feature/tile-support#LifxLanDevice-object)|
-|`tiles`|An array of tile objects|[`tileGetTiles()`](https://github.com/furey/node-lifx-lan/tree/feature/tile-support#tilegettiles-method)|
-|`bounds`|A spacial bounds object|[`tileGetTilesAndBounds()`](https://github.com/furey/node-lifx-lan/tree/feature/tile-support#tilegettilesandbounds-method)|
+|`device`|A LIFX device object|See: [`LifxLanDevice`](https://github.com/furey/node-lifx-lan/tree/feature/tile-support#LifxLanDevice-object)|
+|`tiles`|An array of tile objects|See: [`tileGetTiles()`](https://github.com/furey/node-lifx-lan/tree/feature/tile-support#tilegettiles-method)|
+|`bounds`|A spacial bounds object|See: [`tileGetTilesAndBounds()`](https://github.com/furey/node-lifx-lan/tree/feature/tile-support#tilegettilesandbounds-method)|
 
 ## Example Effects
 
