@@ -36,6 +36,8 @@ require('lifx-tile-effects-framework')
   .catch(console.error)
 ```
 
+Assuming your configured [`EFFECTS_PATH`](#effects-path) contains the [effect files](#effect-files) `effect-1.js`, `effect-2.js` and `etc.js`, running the `example.js` script above would log the following output:
+
 ```console
 $ node example.js
 
