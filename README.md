@@ -4,15 +4,32 @@ A framework for creating [LIFX Tile](https://www.lifx.com/collections/creative-t
 
 # Contents
 
+- [Overview](#overview)
 - [Requirements](#requirements)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Configuration](#configuration)
 - [Example Effects](#example-effects)
 - [Example Repositories](#example-repositories)
+- [Device Cache](#device-cache)
 - [Troubleshooting](#troubleshooting)
 - [Credits](#credits)
 - [License](#license)
+
+## Overview
+
+The `lifx-tile-effects-framework` package:
+
+- Discovers and caches your LIFX devices
+- Displays a menu for selecting a Tile device
+- Auto-selects your Tile device if only one is discovered
+- Discovers your custom Tile effect files
+- Displays a menu for selecting a Tile effect
+- Auto-selects your Tile effect if only one is discovered
+- Exposes CLI options to:
+  - Run an effect directly (`--effect`, `-e`)
+  - Clear your cached devices (`--clear-cache`, `-c`)
+  - Display a help screen (`--help`, `-h`)
 
 ## Requirements
 
@@ -209,7 +226,7 @@ Fades each tile's 64 pixels to different random colors every second:
 module.exports = class {
 
   static getFlushColor() {
-    return { hue: 0, saturation: 1, brightness: 0, kelvin: 9000 }
+    return { saturation: 0, brightness: 0, kelvin: 9000 }
   }
 
   static async create({ device, tiles }) {
@@ -234,6 +251,7 @@ module.exports = class {
         duration: 500,
         colors: [...Array(64)].map(() => ({
           hue: Math.floor(Math.random() * 360)/360,
+          saturation: 1,
           brightness: 1,
         }))
       }).catch(console.error)  
@@ -250,41 +268,47 @@ See the following repositories for advanced usage examples:
 - [lifx-tile-example-effects](https://github.com/furey/lifx-tile-example-effects)
 - [lifx-tile-halloween-effects](https://github.com/furey/lifx-tile-halloween-effects)
 
+## Device Cache
+
+To increase the speed of script re-execution, your LIFX devices are cached on first run.
+
+If a new LIFX device is added to your network but not discovered by the framework, refresh your device cache by passing `--clear-cache` the next time you run your script:
+
+```console
+$ node example.js --clear-cache
+
+Clearing device cache…
+Discovering LIFX devices…
+```
+
 ## Troubleshooting
 
-#### ⚠️ "Effects path required."
+### ⚠️ "Effects path required."
 
 `EFFECTS_PATH` value not set (see: [Effects Path](#effects-path)).
 
-#### ⚠️ "Effects path […] does not exist."
+### ⚠️ "Effects path […] does not exist."
 
 `EFFECTS_PATH` value can't be found on disk (check `.env` value).
 
-#### ⚠️ "Effects path […] is not a directory."
+### ⚠️ "Effects path […] is not a directory."
 
 `EFFECTS_PATH` value is a file and not a directory (check `.env` value).
 
-#### ⚠️ "No valid effect files found in […]."
+### ⚠️ "No valid effect files found in […]."
 
 `EFFECTS_PATH` does not contain any valid effect files (see: [Effect Classes](#effect-classes)).
 
-#### ⚠️ "No tile found."
+### ⚠️ "No tile found."
 
-No Tile devices were found on your LAN (check your device is plugged in and powered on).
+No Tile devices were found on your LAN (check your device is plugged in and powered on, then clear your [device cache](#device-cache) the next time you run your script).
 
-If a new device is added to your network, pass `--clear` when running your script again to clear your LIFX device cache (ensuring your new device is discovered):
 
-```console
-$ node example.js --clear
+### ⚠️ "Tile not responding."
 
-Clearing device cache…
-```
+For unknown reasons your Tile is not responding (exit your script and try again).
 
-#### ⚠️ "Tile not responding."
-
-For unknown reasons your Tile is not responding (quit your script and try again).
-
-#### ⚠️ "Error: Timeout."
+### ⚠️ "Error: Timeout."
 
 You're attempting to update your Tiles too quickly (increase the time between updates and try again).
 
