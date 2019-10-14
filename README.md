@@ -297,12 +297,11 @@ Discovering LIFX devices…
 
 ### ⚠️ "No valid effect files found in […]."
 
-`EFFECTS_PATH` does not contain any valid effect files (see: [Effect Classes](#effect-classes)).
+`EFFECTS_PATH` does not contain any valid effect files (see: [Effect Files](#effect-files)).
 
 ### ⚠️ "No tile found."
 
-No Tile devices were found on your LAN (check your device is plugged in and powered on, then clear your [device cache](#device-cache) the next time you run your script).
-
+No Tile devices were discovered on your LAN (check your device is plugged in and powered on, then clear your [Device Cache](#device-cache) the next time you run your script).
 
 ### ⚠️ "Tile not responding."
 
