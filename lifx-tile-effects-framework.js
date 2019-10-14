@@ -54,7 +54,7 @@ const getOptions = effects => {
       type: 'string',
       choices: effectNames,
     })
-    .option('clear', {
+    .option('clear-cache', {
       alias: 'c',
       describe: 'Clear device cache',
       type: 'boolean',
@@ -81,6 +81,7 @@ const getEffects = async effectsPath => {
     .reduce((effects, dirent) => {
       const fileName = dirent.name
       const ext = path.extname(fileName)
+      if (!isValidExtension(ext)) return effects
       const effectName = path.basename(fileName, ext)
       const effect = require(path.resolve(effectsPath, fileName))
       if (!isValidEffect(effect)) return effects
@@ -90,6 +91,9 @@ const getEffects = async effectsPath => {
   if (!Object.keys(effects).length) validationError(`No valid effect files found in [${effectsPath}].`)
   return effects
 }
+
+const isValidExtension = ext =>
+  ext.toLowerCase() === '.js'
 
 const isValidEffect = effect => {
   if (typeof effect.create !== 'function') return false
@@ -161,16 +165,19 @@ const deviceLabel = device =>
   `${device.deviceInfo.label} [${device.mac}]`
 
 const selectEffect = async (options, effects) => {
-  const selected = options.effect || await selectEffectName(effects)
+  const effectNames = Object.keys(effects)
+  const selected = options.effect
+    || (effectNames.length === 1 ? effectNames[0] : false)
+    || await selectEffectName(effectNames)
   onSelected(selected)
   return effects[selected]
 }
 
-const selectEffectName = async effects => {
+const selectEffectName = async effectNames => {
   const prompt = new Select({
     name: 'effect',
     message: 'Choose an effect',
-    choices: Object.keys(effects)
+    choices: effectNames
   })  
   return await prompt.run()
     .catch(_ => exit('No effect chosen.'))
