@@ -106,7 +106,7 @@ const findTile = async options => {
   while (!deviceJson) {
     log('Looking for cache…')
     if (!await fs.pathExists(cachePath)) {
-      log('Cache not found. Discovering devices…')
+      console.log('Discovering LIFX devices…')
       const devices = await Lifx.discover()
       log('Writing cache…')
       await fs.outputJson(cachePath, devices, { spaces: 2 })
