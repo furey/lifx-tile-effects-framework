@@ -1,6 +1,6 @@
 {
   "name": "lifx-tile-effects-framework",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "description": "A framework for creating LIFX Tile effects.",
   "main": "lifx-tile-effects-framework.js",
   "files": [
