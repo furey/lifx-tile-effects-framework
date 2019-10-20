@@ -22,10 +22,12 @@ The `lifx-tile-effects-framework` package:
 
 - Discovers and caches your LIFX devices
 - Displays a menu for selecting a Tile device
-- Auto-selects your Tile device if only one is discovered
+  - Auto-selects your Tile device if only one is discovered
 - Discovers your custom Tile effect files
 - Displays a menu for selecting a Tile effect
-- Auto-selects your Tile effect if only one is discovered
+  - Auto-selects your Tile effect if only one is discovered
+- Creates your Tile effect
+  - Injects [`device`, `tiles` and `bounds`](#create) objects
 - Exposes CLI options to:
   - Run an effect directly (`--effect`, `-e`)
   - Clear your cached devices (`--clear-cache`, `-c`)
