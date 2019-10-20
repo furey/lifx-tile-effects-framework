@@ -187,7 +187,7 @@ const onSelected = effect =>
   console.log(`Starting ${chalk.cyan(effect)} effect… ${chalk.gray('(press [ctrl+c] to exit)')}`)
 
 const fadeOut = async ({ device, tiles }) => {
-  const duration = 1000
+  const duration = process.env.INSTANT ? 50 : 1000
   const firstTile = tiles[0]
   await device.tileSetTileState64({
     tile_index: firstTile.tile_index,
@@ -212,6 +212,7 @@ const powerOn = async device => {
 }
 
 const flushTiles = async ({ device, tiles, effect }) => {
+  const duration = 50
   const firstTile = tiles[0]
   await device.tileSetTileState64({
     tile_index: firstTile.tile_index,
@@ -219,7 +220,7 @@ const flushTiles = async ({ device, tiles, effect }) => {
     duration: 0,
     colors: Array(firstTile.width * firstTile.height).fill(effect.getFlushColor()),
   }).catch(console.error)
-  await sleep(1000)
+  await sleep(duration)
 }
 
 const createEffect = async ({ device, tiles, bounds, effect }) =>
