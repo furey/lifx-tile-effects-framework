@@ -212,7 +212,6 @@ const powerOn = async device => {
 }
 
 const flushTiles = async ({ device, tiles, effect }) => {
-  const duration = 50
   const firstTile = tiles[0]
   await device.tileSetTileState64({
     tile_index: firstTile.tile_index,
@@ -220,7 +219,7 @@ const flushTiles = async ({ device, tiles, effect }) => {
     duration: 0,
     colors: Array(firstTile.width * firstTile.height).fill(effect.getFlushColor()),
   }).catch(console.error)
-  await sleep(duration)
+  await sleep(500)
 }
 
 const createEffect = async ({ device, tiles, bounds, effect }) =>
