@@ -116,6 +116,7 @@ const findTile = async options => {
       await fs.outputJson(cachePath, devices, { spaces: 2 })
       hasDiscoveredDevices = true
     } else if (options.clear && !hasClearedCache) {
+    } else if (options['clear-cache'] && !hasClearedCache) {
       console.log('Clearing device cache…')
       await fs.remove(cachePath)
       hasClearedCache = true
